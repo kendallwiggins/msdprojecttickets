@@ -6,5 +6,5 @@ import com.bah.msd.mcc.domain.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 	
-	public Optional<Customer> findByName(String name); 
+	public Optional<Customer> findByName(String name);
 }

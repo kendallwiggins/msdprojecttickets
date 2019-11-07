@@ -41,12 +41,12 @@ public class CustomerApi {
 	// Return info for specific customer through their name
 	// URL: http://localhost:8080/customers/name
 
-	/*
-	 * @GetMapping("/{customerName}") public Optional<Customer>
-	 * findByName(@PathVariable("customerName") String customerName) {
-	 * System.out.println("This is a test to see if get by name worked!"); return
-	 * this.customerRepo.findByName(customerName); }
-	 */
+	  @GetMapping("/name/{customerName}") 
+	  public Optional<Customer> findByName(@PathVariable("customerName") String customerName) {
+		  System.out.println("This is a test to see if get by name worked!"); 
+		  return customerRepo.findByName(customerName); 
+
+		} 
 
 	// get a customer's info by their id
 	// URL: http://localhost:8080/customers/{id number}
@@ -74,7 +74,7 @@ public class CustomerApi {
 		return response;
 	}
 
-	// Update existing customer
+	// Update existing customer by ID
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer,
 			@PathVariable("customerId") long customerId) {
@@ -85,7 +85,18 @@ public class CustomerApi {
 		return ResponseEntity.ok().build();
 	}
 
-	// Delete an existing customer
+	// Update existing customer by name
+	@PutMapping("/name/{customerName}")
+	public ResponseEntity<?> putCustomerName(@RequestBody Customer newCustomer,
+			@PathVariable("customerName") String customerName) {
+		if (newCustomer.getName() == null || newCustomer.getEmail() == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		newCustomer = customerRepo.save(newCustomer); // save is part of CRUD repository
+		return ResponseEntity.ok().build();
+	}
+	
+	// Delete an existing customer by ID; remove RequestBody to not need info in Body in Postman?
 	@DeleteMapping("/{customerId}")
 	public ResponseEntity<?> deleteCustomer(@RequestBody Customer delCustomer, @PathVariable Long customerId) {
 		if (delCustomer.getId() != customerId 
@@ -96,21 +107,15 @@ public class CustomerApi {
 		customerRepo.deleteById(customerId);
 		return ResponseEntity.ok().build();
 	}
-
-//	@DeleteMapping(value = "/{customerId}")
-//	public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
-//		if (priorCustomer.getId() != customerId || priorCustomer.getName() == null || priorCustomer.getEmail() == null) {			
-//			return ResponseEntity.badRequest().build();		}
-//		}
-//		
-//		Customer customerToRemove = customerRepo.deleteById(customerId);
-//	       if (!customerToRemove) {
-////	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-////	        }
-////
-////	        return new ResponseEntity<>(customerId, HttpStatus.OK);
-////	    }
-////		//priorCustomer = customerRepo.deleteById(priorCustomer.getId()); // save is part of CRUD repository
-////		return ResponseEntity.ok().build();
-////}
+	
+	// Delete an existing customer by name
+		@DeleteMapping("/name/{customerName}")
+		public ResponseEntity<?> deleteCustomerName(@RequestBody Customer delCustomer, @PathVariable String customerName) {
+			if (delCustomer.getName() == null 
+				|| delCustomer.getEmail() == null) {
+				return ResponseEntity.badRequest().build();
+			}
+			customerRepo.delete(delCustomer); 
+			return ResponseEntity.ok().build();
+		}
 }
