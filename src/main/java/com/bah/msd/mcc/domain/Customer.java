@@ -21,6 +21,10 @@ public class Customer {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 
+	public String toJSON(){
+		return "{\"id\"" + ":" + id + ", \"name\"" + ": \"" + name + "\", \"password\"" + ": \"" + password + "\", \"email\"" + ": \"" + email + "\" }";
+	}
+
 	public Customer(String name, String email, String password) {
 		super();
 		this.name = name;
