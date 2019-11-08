@@ -40,9 +40,9 @@ public class CustomerApi {
 	}
 
 	// Return info for specific customer through their name
-	// URL: http://localhost:8080/customers/name
+	// URL: http://localhost:8080/api/customers/byname/{name}
 
-	  @GetMapping("/name/{customerName}") 
+	  @PostMapping("/byname/{customerName}") // changed from GET to POST to match front end
 	  public Optional<Customer> findByName(@PathVariable("customerName") String customerName) {
 		  System.out.println("This is a test to see if get by name worked!"); 
 		  return customerRepo.findByName(customerName); 
@@ -50,9 +50,9 @@ public class CustomerApi {
 		} 
 
 	// get a customer's info by their id
-	// URL: http://localhost:8080/customers/{id number}
+	// URL: http://localhost:8080/api/customers/{id number}
 
-	@GetMapping("/{customerId}")
+	@GetMapping("/{customerId}") //Post?
 	public Optional<Customer> findById(@PathVariable("customerId") long id) {
 		System.out.println("This is a test to see if get by id worked!");
 		return customerRepo.findById(id); // this is built-in in CRUD repository; do not need to add to
