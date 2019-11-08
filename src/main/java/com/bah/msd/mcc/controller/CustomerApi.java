@@ -29,9 +29,10 @@ public class CustomerApi {
 	CustomerRepository customerRepo;
 
 	// get a list of all customers
-	// URL: http://localhost:8080/customers/all
+	// URL: http://localhost:8080/customers
 
-	@GetMapping("/all") // need to add produces = "JSON"?
+	//@GetMapping("/all") // need to add produces = "JSON"?
+	@GetMapping // changed to match URL of front end
 	public Iterable<Customer> getAllCustomers() {
 		System.out.println("This is a test to see if get all worked!");
 		// System.out.println(this.customerRepo.findAll().toString());
