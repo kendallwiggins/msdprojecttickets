@@ -1,7 +1,7 @@
 package com.bah.msd.mcc.domain;
 
-import java.util.Date;
-
+import java.time.LocalDateTime;
+//import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,16 +15,21 @@ import javax.persistence.Table;
 public class Registrations{
 
 	@Column (name="EVENT_ID")
-	int eventId;
-	int customerId; 
+	long eventId;
+	
+	@Column (name="CUSTOMER_ID")
+	long customerId; 
+	
 	String notes;
-	Date regDate;
+	
+	@Column (name="REGISTRATION_DATE")
+	LocalDateTime regDate;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 
-	public Registrations(int eventId, int customerId, String notes, Date regDate) {
+	public Registrations(long eventId, long customerId, String notes, LocalDateTime regDate) {
 		super();
 		this.eventId = eventId;
 		this.customerId = customerId;
@@ -45,19 +50,19 @@ public class Registrations{
 		this.id = id;
 	}
 
-	public int getEventId() {
+	public long getEventId() {
 		return eventId;
 	}
 
-	public void setEventId(int eventId) {
+	public void setEventId(long eventId) {
 		this.eventId = eventId;
 	}
 
-	public int getCustomerId() {
+	public long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
 	}
 
@@ -69,11 +74,11 @@ public class Registrations{
 		this.notes = notes;
 	}
 
-	public Date getRegDate() {
+	public LocalDateTime getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Date regDate) {
+	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
 
