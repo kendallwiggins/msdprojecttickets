@@ -1,5 +1,7 @@
 package com.bah.msd.mcc.controller;
 
+import com.bah.msd.mcc.domain.Token;
+
 public class JWTMockUtil implements JWTUtil {
 
 	public boolean verifyToken(String jwt_token) {
