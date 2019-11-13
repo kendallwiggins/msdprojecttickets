@@ -98,14 +98,14 @@ public class CustomerApi {
 	}
 	
 	// Delete an existing customer by ID; remove RequestBody to not need info in Body in Postman?
-	@DeleteMapping("/{customerId}")
-	public ResponseEntity<?> deleteCustomer(@RequestBody Customer delCustomer, @PathVariable Long customerId) {
-		if (delCustomer.getId() != customerId 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteCustomer(@RequestBody Customer delCustomer, @PathVariable Long id) {
+		if (delCustomer.getId() != id
 				|| delCustomer.getName() == null 
 				|| delCustomer.getEmail() == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		customerRepo.deleteById(customerId);
+		customerRepo.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
 	

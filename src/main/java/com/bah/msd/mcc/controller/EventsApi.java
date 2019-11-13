@@ -99,15 +99,15 @@ public class EventsApi {
 //	}
 	
 	// Delete an existing customer by ID; remove RequestBody to not need info in Body in Postman?
-	@DeleteMapping("/{eventId}")
-	public ResponseEntity<?> deleteEvent(@RequestBody Events delEvent, @PathVariable Long eventId) {
-		if (delEvent.getId() != eventId 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteEvent(@RequestBody Events delEvent, @PathVariable Long id) {
+		if (delEvent.getId() != id 
 				|| delEvent.getCode() == null 
 				|| delEvent.getTitle() == null
 				|| delEvent.getDescription() == null){
 			return ResponseEntity.badRequest().build();
 		}
-		eventsRepo.deleteById(eventId);
+		eventsRepo.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
 	
