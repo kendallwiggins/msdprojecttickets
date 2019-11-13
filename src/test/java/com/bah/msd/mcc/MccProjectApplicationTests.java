@@ -1,12 +1,12 @@
 package com.bah.msd.mcc;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class MccProjectApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
