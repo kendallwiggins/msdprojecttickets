@@ -1,7 +1,7 @@
 package com.bah.msd.mcc.domain;
 
-import java.time.LocalDateTime;
-//import java.util.Date;
+//import java.time.LocalDateTime;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +23,13 @@ public class Registrations{
 	String notes;
 	
 	@Column (name="REGISTRATION_DATE")
-	LocalDateTime regDate;
+	Date regDate;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 
-	public Registrations(long eventId, long customerId, String notes, LocalDateTime regDate) {
+	public Registrations(long eventId, long customerId, String notes, Date regDate) {
 		super();
 		this.eventId = eventId;
 		this.customerId = customerId;
@@ -74,11 +74,11 @@ public class Registrations{
 		this.notes = notes;
 	}
 
-	public LocalDateTime getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(LocalDateTime regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 
